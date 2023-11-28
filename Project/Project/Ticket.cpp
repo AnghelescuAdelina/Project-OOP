@@ -1,13 +1,15 @@
 // Ticket.cpp
 #include "Ticket.h"
 
+using namespace std;
+
 int Ticket::nextID = 1;
 
 Ticket::Ticket() : uniqueID(nextID++) {}
 
-Ticket::Ticket(const std::string& category) : category(category), uniqueID(nextID++) {}
+Ticket::Ticket(const string& category) : category(category), uniqueID(nextID++) {}
 
-const std::string& Ticket::getCategory() const {
+const string& Ticket::getCategory() const {
     return category;
 }
 
@@ -15,18 +17,18 @@ int Ticket::getUniqueID() const {
     return uniqueID;
 }
 
-void Ticket::setCategory(const std::string& category) {
+void Ticket::setCategory(const string& category) {
     if (!category.empty()) {
         Ticket::category = category;
     }
     else {
-        std::cerr << "Invalid category\n";
+        cerr << "Invalid category\n";
     }
 }
 
 void Ticket::displayTicketInfo() const {
-    std::cout << "Category: " << category << "\n";
-    std::cout << "Unique ID: " << uniqueID << "\n";
+    cout << "Category: " << category << "\n";
+    cout << "Unique ID: " << uniqueID << "\n";
 }
 
 int Ticket::getNextID() {

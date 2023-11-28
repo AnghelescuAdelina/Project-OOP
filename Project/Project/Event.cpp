@@ -1,52 +1,54 @@
 // Event.cpp
 #include "Event.h"
 
+using namespace std;
+
 Event::Event() {}
 
-Event::Event(const std::string& name, const std::string& date, const std::string& time)
+Event::Event(const string& name, const string& date, const string& time)
     : name(name), date(date), time(time) {}
 
-const std::string& Event::getName() const {
+const string& Event::getName() const {
     return name;
 }
 
-const std::string& Event::getDate() const {
+const string& Event::getDate() const {
     return date;
 }
 
-const std::string& Event::getTime() const {
+const string& Event::getTime() const {
     return time;
 }
 
-void Event::setName(const std::string& name) {
+void Event::setName(const string& name) {
     if (!name.empty()) {
         Event::name = name;
     }
     else {
-        std::cerr << "Invalid name\n";
+        cerr << "Invalid name\n";
     }
 }
 
-void Event::setDate(const std::string& date) {
+void Event::setDate(const string& date) {
     if (!date.empty()) {
         Event::date = date;
     }
     else {
-        std::cerr << "Invalid date\n";
+        cerr << "Invalid date\n";
     }
 }
 
-void Event::setTime(const std::string& time) {
+void Event::setTime(const string& time) {
     if (!time.empty()) {
         Event::time = time;
     }
     else {
-        std::cerr << "Invalid time\n";
+        cerr << "Invalid time\n";
     }
 }
 
 void Event::displayEventInfo() const {
-    std::cout << "Event Name: " << name << "\n";
-    std::cout << "Date: " << date << "\n";
-    std::cout << "Time: " << time << "\n";
+    cout << "Event Name: " << name << "\n";
+    cout << "Date: " << date << "\n";
+    cout << "Time: " << time << "\n";
 }

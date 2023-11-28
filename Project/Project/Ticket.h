@@ -3,22 +3,24 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 class Ticket {
 private:
-    std::string category;
+    string category;
     int uniqueID;
     static int nextID;
 
 public:
     Ticket();
-    Ticket(const std::string& category);
+    Ticket(const string& category);
 
     // Accessor methods
-    const std::string& getCategory() const;
+    const string& getCategory() const;
     int getUniqueID() const;
 
     // Validation methods
-    void setCategory(const std::string& category);
+    void setCategory(const string& category);
 
     // Other methods
     void displayTicketInfo() const;

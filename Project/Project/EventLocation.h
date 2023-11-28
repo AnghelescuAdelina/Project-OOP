@@ -3,28 +3,30 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 class EventLocation {
 private: 
     int maxSeats;
     int numRows;
     int numZones;
-    std::vector<int> seatsPerRow;
+    vector<int> seatsPerRow;
 
 public:
     EventLocation();
-    EventLocation(int maxSeats, int numRows, int numZones, const std::vector<int>& seatsPerRow);
+    EventLocation(int maxSeats, int numRows, int numZones, const vector<int>& seatsPerRow);
 
     // Accessor methods
     int getMaxSeats() const;
     int getNumRows() const;
     int getNumZones() const;
-    const std::vector<int>& getSeatsPerRow() const;
+    const vector<int>& getSeatsPerRow() const;
 
     // Validation methods
     void setMaxSeats(int maxSeats);
     void setNumRows(int numRows);
     void setNumZones(int numZones);
-    void setSeatsPerRow(const std::vector<int>& seatsPerRow);
+    void setSeatsPerRow(const vector<int>& seatsPerRow);
 
     // Other methods
     void displayLocationInfo() const;

@@ -1,9 +1,11 @@
 // EventLocation.cpp
 #include "EventLocation.h"
 
+using namespace std;
+
 EventLocation::EventLocation() : maxSeats(0), numRows(0), numZones(0) {}
 
-EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const std::vector<int>& seatsPerRow)
+EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const vector<int>& seatsPerRow)
     : maxSeats(maxSeats), numRows(numRows), numZones(numZones), seatsPerRow(seatsPerRow) {}
 
 int EventLocation::getMaxSeats() const {
@@ -27,7 +29,7 @@ void EventLocation::setMaxSeats(int maxSeats) {
         EventLocation::maxSeats = maxSeats;
     }
     else {
-        std::cerr << "Invalid maxSeats value\n";
+        cerr << "Invalid maxSeats value\n";
     }
 }
 
@@ -36,7 +38,7 @@ void EventLocation::setNumRows(int numRows) {
         EventLocation::numRows = numRows;
     }
     else {
-        std::cerr << "Invalid numRows value\n";
+        cerr << "Invalid numRows value\n";
     }
 }
 
@@ -45,26 +47,26 @@ void EventLocation::setNumZones(int numZones) {
         EventLocation::numZones = numZones;
     }
     else {
-        std::cerr << "Invalid numZones value\n";
+        cerr << "Invalid numZones value\n";
     }
 }
 
-void EventLocation::setSeatsPerRow(const std::vector<int>& seatsPerRow) {
+void EventLocation::setSeatsPerRow(const vector<int>& seatsPerRow) {
     if (!seatsPerRow.empty()) {
         EventLocation::seatsPerRow = seatsPerRow;
     }
     else {
-        std::cerr << "Invalid seatsPerRow value\n";
+        cerr << "Invalid seatsPerRow value\n";
     }
 }
 
 void EventLocation::displayLocationInfo() const {
-    std::cout << "Max Seats: " << maxSeats << "\n";
-    std::cout << "Num Rows: " << numRows << "\n";
-    std::cout << "Num Zones: " << numZones << "\n";
-    std::cout << "Seats Per Row: ";
+    cout << "Max Seats: " << maxSeats << "\n";
+    cout << "Num Rows: " << numRows << "\n";
+    cout << "Num Zones: " << numZones << "\n";
+    cout << "Seats Per Row: ";
     for (int seats : seatsPerRow) {
-        std::cout << seats << " ";
+        cout << seats << " ";
     }
-    std::cout << "\n";
+    cout << "\n";
 }
