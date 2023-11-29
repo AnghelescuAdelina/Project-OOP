@@ -1,30 +1,31 @@
 // Ticket.h
-#pragma once
-#include <iostream>
-#include <vector>
+#pragma once  // Header guard to prevent multiple inclusions of the same header file
 
-using namespace std;
+#include <iostream>  
+#include <vector>    // Include necessary standard C++ library for vectors
+
+using namespace std;  
 
 class Ticket {
 private:
-    string category;
-    int uniqueID;
-    static int nextID;
+    string category;  // Private member variable to store the category of the ticket
+    int uniqueID;     // Private member variable to store the unique ID of the ticket
+    static int nextID;  // Static member variable to keep track of the next available unique ID
 
 public:
-    Ticket();
-    Ticket(const string& category);
+    Ticket();  // Default constructor declaration
+    Ticket(const string& category);  // Parameterized constructor declaration
 
     // Accessor methods
-    const string& getCategory() const;
-    int getUniqueID() const;
+    const string& getCategory() const;  // Accessor method to get the category of the ticket
+    int getUniqueID() const;            // Accessor method to get the unique ID of the ticket
 
     // Validation methods
-    void setCategory(const string& category);
+    void setCategory(const string& category);  // Validation method to set the category of the ticket
 
     // Other methods
-    void displayTicketInfo() const;
+    void displayTicketInfo() const;  // Method to display information about the ticket
 
     // Static method
-    static int getNextID();
+    static int getNextID();  // Static method to get the next available unique ID
 };
