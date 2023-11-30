@@ -3,7 +3,7 @@
 
 #include <iostream>  
 
-using namespace std;  
+using namespace std;   
 
 class Event {
 private:
