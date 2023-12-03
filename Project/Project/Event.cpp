@@ -1,12 +1,14 @@
 // Event.cpp
 #include "Event.h"
 
-using namespace std; 
+using namespace std;
 
-Event::Event() {}     // Default constructor: No additional initialization required
+// Default constructor: No additional initialization required
+Event::Event() {}
 
+// Parameterized constructor: Initialize member variables with provided values
 Event::Event(const string& name, const string& date, const string& time)
-    : name(name), date(date), time(time) {}     // Parameterized constructor: Initialize member variables with provided values
+    : name(name), date(date), time(time) {}
 
 // Destructor
 Event::~Event() {
@@ -31,47 +33,55 @@ Event& Event::operator=(const Event& other) {
 bool Event::operator==(const Event& other) const {
     return (name == other.name) && (date == other.date) && (time == other.time);
 }
+
+// Getter for name
 const string& Event::getName() const {
-    return name;  // Return the name of the event
+    return name;
 }
 
+// Getter for date
 const string& Event::getDate() const {
-    return date;  // Return the date of the event
+    return date;
 }
 
+// Getter for time
 const string& Event::getTime() const {
-    return time;  // Return the time of the event
+    return time;
 }
 
+// Setter for name
 void Event::setName(const string& name) {
     if (!name.empty()) {
-        Event::name = name;  // Set the name of the event if it's not empty
+        this->name = name;
     }
     else {
-        cerr << "Invalid name\n";  // Display an error message if the name is empty
+        cerr << "Invalid name\n";
     }
 }
 
+// Setter for date
 void Event::setDate(const string& date) {
     if (!date.empty()) {
-        Event::date = date;  // Set the date of the event if it's not empty
+        this->date = date;
     }
     else {
-        cerr << "Invalid date\n";  // Display an error message if the date is empty
+        cerr << "Invalid date\n";
     }
 }
 
+// Setter for time
 void Event::setTime(const string& time) {
     if (!time.empty()) {
-        Event::time = time;  // Set the time of the event if it's not empty
+        this->time = time;
     }
     else {
-        cerr << "Invalid time\n";  // Display an error message if the time is empty
+        cerr << "Invalid time\n";
     }
 }
 
+// Display information about the event
 void Event::displayEventInfo() const {
-    cout << "Event Name: " << name << "\n";  // Display the name of the event
-    cout << "Date: " << date << "\n";        // Display the date of the event
-    cout << "Time: " << time << "\n";        // Display the time of the event
+    cout << "Event Name: " << name << "\n";
+    cout << "Date: " << date << "\n";
+    cout << "Time: " << time << "\n";
 }

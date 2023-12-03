@@ -1,21 +1,36 @@
 // EventLocation.cpp
 #include "EventLocation.h"
+#include <iostream>
 
-using namespace std;  
+using namespace std;
 
 // Default constructor: Initialize member variables to default values
-EventLocation::EventLocation() : maxSeats(0), numRows(0), numZones(0) {}
+EventLocation::EventLocation() : maxSeats(0), numRows(0), numZones(0), seatsPerRow(nullptr) {}
 
-EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const vector<int>& seatsPerRow)
-    : maxSeats(maxSeats), numRows(numRows), numZones(numZones), seatsPerRow(seatsPerRow) {}
 // Parameterized constructor: Initialize member variables with provided values
+EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const int* seatsPerRow)
+    : maxSeats(maxSeats), numRows(numRows), numZones(numZones) {
+    // Allocate memory for seatsPerRow and copy values
+    this->seatsPerRow = new int[numRows];
+    for (int i = 0; i < numRows; ++i) {
+        this->seatsPerRow[i] = seatsPerRow[i];
+    }
+}
 
-// Destructor
-EventLocation::~EventLocation() {}
+// Destructor: Release dynamically allocated memory
+EventLocation::~EventLocation() {
+    delete[] seatsPerRow;
+}
 
 // Copy Constructor
 EventLocation::EventLocation(const EventLocation& other)
-    : maxSeats(other.maxSeats), numRows(other.numRows), numZones(other.numZones), seatsPerRow(other.seatsPerRow) {}
+    : maxSeats(other.maxSeats), numRows(other.numRows), numZones(other.numZones) {
+    // Allocate memory for seatsPerRow and copy values
+    this->seatsPerRow = new int[numRows];
+    for (int i = 0; i < numRows; ++i) {
+        this->seatsPerRow[i] = other.seatsPerRow[i];
+    }
+}
 
 // Copy Assignment Operator
 EventLocation& EventLocation::operator=(const EventLocation& other) {
@@ -23,7 +38,15 @@ EventLocation& EventLocation::operator=(const EventLocation& other) {
         maxSeats = other.maxSeats;
         numRows = other.numRows;
         numZones = other.numZones;
-        seatsPerRow = other.seatsPerRow;
+
+        // Release existing memory
+        delete[] seatsPerRow;
+
+        // Allocate memory for seatsPerRow and copy values
+        seatsPerRow = new int[numRows];
+        for (int i = 0; i < numRows; ++i) {
+            seatsPerRow[i] = other.seatsPerRow[i];
+        }
     }
     return *this;
 }
@@ -32,70 +55,71 @@ EventLocation& EventLocation::operator=(const EventLocation& other) {
 bool EventLocation::operator==(const EventLocation& other) const {
     return (maxSeats == other.maxSeats) &&
         (numRows == other.numRows) &&
-        (numZones == other.numZones) &&
-        (seatsPerRow == other.seatsPerRow);
+        (numZones == other.numZones);
+    // Comparing seatsPerRow is not necessary for equality
 }
 
-
 int EventLocation::getMaxSeats() const {
-    return maxSeats;  // Return the maximum number of seats
+    return maxSeats;
 }
 
 int EventLocation::getNumRows() const {
-    return numRows;  // Return the number of rows
+    return numRows;
 }
 
 int EventLocation::getNumZones() const {
-    return numZones;  // Return the number of zones
+    return numZones;
 }
 
-const std::vector<int>& EventLocation::getSeatsPerRow() const {
-    return seatsPerRow;  // Return the vector containing the number of seats per row
+const int* EventLocation::getSeatsPerRow() const {
+    return seatsPerRow;
 }
 
 void EventLocation::setMaxSeats(int maxSeats) {
     if (maxSeats > 0) {
-        EventLocation::maxSeats = maxSeats;  // Set the maximum number of seats if it's a valid value
+        this->maxSeats = maxSeats;
     }
     else {
-        cerr << "Invalid maxSeats value\n";  // Display an error message if the value is not valid
+        cerr << "Invalid maxSeats value\n";
     }
 }
 
 void EventLocation::setNumRows(int numRows) {
     if (numRows > 0) {
-        EventLocation::numRows = numRows;  // Set the number of rows if it's a valid value
+        this->numRows = numRows;
     }
     else {
-        cerr << "Invalid numRows value\n";  // Display an error message if the value is not valid
+        cerr << "Invalid numRows value\n";
     }
 }
 
 void EventLocation::setNumZones(int numZones) {
     if (numZones > 0) {
-        EventLocation::numZones = numZones;  // Set the number of zones if it's a valid value
+        this->numZones = numZones;
     }
     else {
-        cerr << "Invalid numZones value\n";  // Display an error message if the value is not valid
+        cerr << "Invalid numZones value\n";
     }
 }
 
-void EventLocation::setSeatsPerRow(const vector<int>& seatsPerRow) {
-    if (!seatsPerRow.empty()) {
-        EventLocation::seatsPerRow = seatsPerRow;  // Set the vector containing the number of seats per row if it's not empty
-    }
-    else {
-        cerr << "Invalid seatsPerRow value\n";  // Display an error message if the value is not valid
+void EventLocation::setSeatsPerRow(const int* seatsPerRow) {
+    // Release existing memory
+    delete[] this->seatsPerRow;
+
+    // Allocate memory for seatsPerRow and copy values
+    this->seatsPerRow = new int[numRows];
+    for (int i = 0; i < numRows; ++i) {
+        this->seatsPerRow[i] = seatsPerRow[i];
     }
 }
 
 void EventLocation::displayLocationInfo() const {
-    cout << "Max Seats: " << maxSeats << "\n";  // Display the maximum number of seats
-    cout << "Num Rows: " << numRows << "\n";    // Display the number of rows
-    cout << "Num Zones: " << numZones << "\n";  // Display the number of zones
+    cout << "Max Seats: " << maxSeats << "\n";
+    cout << "Num Rows: " << numRows << "\n";
+    cout << "Num Zones: " << numZones << "\n";
     cout << "Seats Per Row: ";
-    for (int seats : seatsPerRow) {
-        cout << seats << " ";  // Display each element in the vector of seats per row
+    for (int i = 0; i < numRows; ++i) {
+        cout << seatsPerRow[i] << " ";
     }
     cout << "\n";
 }

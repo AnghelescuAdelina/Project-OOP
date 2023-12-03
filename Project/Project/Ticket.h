@@ -1,10 +1,10 @@
 // Ticket.h
 #pragma once  // Header guard to prevent multiple inclusions of the same header file
 
-#include <iostream>  
+#include <iostream>
 #include <string>
 
-using namespace std;  
+using namespace std;
 
 class Ticket {
 private:
@@ -13,30 +13,48 @@ private:
     static int nextID;  // Static member variable to keep track of the next available unique ID
 
 public:
-    //Constructors
-    Ticket();  // Default constructor declaration
-    Ticket(const string& category);  // Parameterized constructor declaration
-    Ticket(const Ticket& other); //Copy constructor
-    
-    //Destructor
+    // Constructors and Destructor
+
+    // Default constructor declaration
+    Ticket();
+
+    // Parameterized constructor declaration
+    Ticket(const string& category);
+
+    // Copy constructor declaration
+    Ticket(const Ticket& other);
+
+    // Destructor declaration
     ~Ticket();
 
-    //Assignment operator
+    // Assignment and Equality operators
+
+    // Copy assignment operator
     Ticket& operator=(const Ticket& other);
 
-    // Accessor methods
-    const string& getCategory() const;  // Accessor method to get the category of the ticket
-    int getUniqueID() const;            // Accessor method to get the unique ID of the ticket
+    // Equality operator
+    bool operator==(const Ticket& other) const;
 
-    // Validation methods
-    void setCategory(const string& category);  // Validation method to set the category of the ticket
+    // Accessors
 
-    // Other methods
-    void displayTicketInfo() const;  // Method to display information about the ticket
+    // Accessor method to get the category of the ticket
+    const string& getCategory() const;
 
-    //Overloaded operators
-    bool operator==(const Ticket& other) const; //Equility operator
+    // Accessor method to get the unique ID of the ticket
+    int getUniqueID() const;
+
+    // Validation method
+
+    // Validation method to set the category of the ticket
+    void setCategory(const string& category);
+
+    // Display information
+
+    // Method to display information about the ticket
+    void displayTicketInfo() const;
 
     // Static method
-    static int getNextID();  // Static method to get the next available unique ID
+
+    // Static method to get the next available unique ID
+    static int getNextID();
 };
