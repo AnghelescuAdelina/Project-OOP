@@ -17,6 +17,15 @@ public:
     EventLocation();  // Default constructor declaration
     EventLocation(int maxSeats, int numRows, int numZones, const vector<int>& seatsPerRow);  // Parameterized constructor declaration
 
+    //Destructor
+    ~EventLocation();
+
+    //Copy constructor
+    EventLocation(const EventLocation& other);
+
+    //Copy Assignment operator
+    EventLocation& operator= (const EventLocation& other);
+
     // Accessor methods
     int getMaxSeats() const;                  // Accessor method to get the maximum number of seats
     int getNumRows() const;                   // Accessor method to get the number of rows
@@ -31,4 +40,7 @@ public:
 
     // Other methods
     void displayLocationInfo() const;  // Method to display information about the event location
+
+    //Equility operator
+    bool operator==(const EventLocation& other) const;
 };

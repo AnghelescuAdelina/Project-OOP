@@ -8,6 +8,29 @@ Event::Event() {}     // Default constructor: No additional initialization requi
 Event::Event(const string& name, const string& date, const string& time)
     : name(name), date(date), time(time) {}     // Parameterized constructor: Initialize member variables with provided values
 
+// Destructor
+Event::~Event() {
+    // Add any cleanup code if necessary
+}
+
+// Copy Constructor
+Event::Event(const Event& other)
+    : name(other.name), date(other.date), time(other.time) {}
+
+// Copy Assignment Operator
+Event& Event::operator=(const Event& other) {
+    if (this != &other) {
+        name = other.name;
+        date = other.date;
+        time = other.time;
+    }
+    return *this;
+}
+
+// Equality operator
+bool Event::operator==(const Event& other) const {
+    return (name == other.name) && (date == other.date) && (time == other.time);
+}
 const string& Event::getName() const {
     return name;  // Return the name of the event
 }

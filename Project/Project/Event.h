@@ -15,6 +15,16 @@ public:
     Event();  // Default constructor declaration
     Event(const string& name, const string& date, const string& time);  // Parameterized constructor declaration
 
+    //Destructor
+    ~Event();
+
+    // Copy Constructor
+    Event(const Event& other);  
+
+    // Copy Assignment Operator
+    Event& operator=(const Event& other);  
+
+
     // Accessor methods
     const string& getName() const;  // Accessor method to get the name of the event
     const string& getDate() const;  // Accessor method to get the date of the event
@@ -27,4 +37,6 @@ public:
 
     // Other methods
     void displayEventInfo() const;  // Method to display information about the event
+    // Equality operator
+    bool operator==(const Event& other) const;
 };

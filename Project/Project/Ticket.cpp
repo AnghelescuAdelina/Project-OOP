@@ -11,6 +11,29 @@ Ticket::Ticket() : uniqueID(nextID++) {}
 // Parameterized constructor: Assign the provided category, increment nextID, and assign it to uniqueID
 Ticket::Ticket(const string& category) : category(category), uniqueID(nextID++) {}
 
+//Destructor
+Ticket::~Ticket(){}
+
+//Copy constructor   // Copy the 'category' from 'other' and generate a new unique ID
+Ticket::Ticket(const Ticket& other) : category(other.category), uniqueID(nextID++){}
+
+//Copy assignment operator
+Ticket& Ticket::operator=(const Ticket& other) {
+    if (this != &other) {
+        //Check for self-assignment
+        //Copy data from 'other' to 'this'
+        category = other.category;
+        uniqueID = nextID++;
+    }
+    return *this; //Return the modified object
+}
+
+// Equality operator
+bool Ticket::operator==(const Ticket& other) const {
+    return (category == other.category) && (uniqueID == other.uniqueID);
+    // Check if the category and unique ID of two tickets are equal
+}
+
 const string& Ticket::getCategory() const {
     return category;  // Return the category of the ticket
 }

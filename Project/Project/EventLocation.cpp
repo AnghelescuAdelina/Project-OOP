@@ -10,6 +10,32 @@ EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const vect
     : maxSeats(maxSeats), numRows(numRows), numZones(numZones), seatsPerRow(seatsPerRow) {}
 // Parameterized constructor: Initialize member variables with provided values
 
+// Destructor
+EventLocation::~EventLocation() {}
+
+// Copy Constructor
+EventLocation::EventLocation(const EventLocation& other)
+    : maxSeats(other.maxSeats), numRows(other.numRows), numZones(other.numZones), seatsPerRow(other.seatsPerRow) {}
+
+// Copy Assignment Operator
+EventLocation& EventLocation::operator=(const EventLocation& other) {
+    if (this != &other) {
+        maxSeats = other.maxSeats;
+        numRows = other.numRows;
+        numZones = other.numZones;
+        seatsPerRow = other.seatsPerRow;
+    }
+    return *this;
+}
+
+// Equality operator
+bool EventLocation::operator==(const EventLocation& other) const {
+    return (maxSeats == other.maxSeats) &&
+        (numRows == other.numRows) &&
+        (numZones == other.numZones) &&
+        (seatsPerRow == other.seatsPerRow);
+}
+
 
 int EventLocation::getMaxSeats() const {
     return maxSeats;  // Return the maximum number of seats
