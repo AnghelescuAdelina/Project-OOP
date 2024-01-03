@@ -7,6 +7,9 @@
 #include <string>
 #include <fstream>
 
+//Functions 
+void displayMenu();
+
 using namespace std;
 
 int main() {
@@ -73,4 +76,38 @@ int main() {
     }
 
     return 0;
+}
+
+void displayMenu() {
+    cout << "Menu:\n";
+    cout << "1. Create Event\n";
+    cout << "2. Display Event Info\n";
+    cout << "3. Create Ticket\n";
+    cout << "4. Display Ticket Info\n";
+    cout << "5. Exit\n";
+
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+    case 1:
+        createEvent(event);
+        break;
+    case 2:
+        displayEventInfo(event);
+        break;
+    case 3:
+        createTicket(ticket);
+        break;
+    case 4:
+        displayTicketInfo(ticket);
+        break;
+    case 5:
+        cout << "Exiting menu...\n";
+        break;
+    default:
+        cerr << "Invalid choice...\n";
+
+    }
 }
