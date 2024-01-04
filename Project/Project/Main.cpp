@@ -8,8 +8,15 @@
 #include <fstream>
 #include <vector>
 
-//Functions 
+//Function prototypes
 void displayMenu(vector<Event>& events);
+void createTicket(Event& event);
+void displayTicketInfo(const Ticket& ticket);
+void saveData(const vector<Event>& events);
+void restoreData(vector<Event>& events);
+Event* findEventByName(const vector<Event>& events, const string& name);
+void displayEventDetails(const Event& event);
+void readEventFromFile(vector<Event>& events);
 
 using namespace std;
 
@@ -99,7 +106,7 @@ void displayMenu(vector<Event>& events) {
                 cerr << "No events available. Create an event first.\n";
             }
             else {
-                createTicket(events[0]); // You can modify this based on your logic
+                createTicket(events[0]); 
             }
             break;
 
@@ -115,4 +122,13 @@ void displayMenu(vector<Event>& events) {
             cerr << "Invalid choice. Please try again.\n";
         }
     } while (choice != 3);
+}
+
+//Function to find an event by name
+Event* findEventByName(const vector<Event>& events, const string& name) {
+    auto iterator = find_if(events.begin(), events.end(), [name](const Event& event) {
+        return event.getName() == name;
+        });
+
+    return (iterator != events.end()) ? &(*iterator) : nullptr;
 }
