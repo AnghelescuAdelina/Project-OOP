@@ -6,9 +6,10 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
 //Functions 
-void displayMenu();
+void displayMenu(vector<Event>& events);
 
 using namespace std;
 
@@ -78,36 +79,40 @@ int main() {
     return 0;
 }
 
-void displayMenu() {
-    cout << "Menu:\n";
-    cout << "1. Create Event\n";
-    cout << "2. Display Event Info\n";
-    cout << "3. Create Ticket\n";
-    cout << "4. Display Ticket Info\n";
-    cout << "5. Exit\n";
+//Function implementations
 
+// Function to display the main menu
+void displayMenu(vector<Event>& events) {
     int choice;
-    cout << "Enter your choice: ";
-    cin >> choice;
 
-    switch (choice) {
-    case 1:
-        createEvent(event);
-        break;
-    case 2:
-        displayEventInfo(event);
-        break;
-    case 3:
-        createTicket(ticket);
-        break;
-    case 4:
-        displayTicketInfo(ticket);
-        break;
-    case 5:
-        cout << "Exiting menu...\n";
-        break;
-    default:
-        cerr << "Invalid choice...\n";
+    do {
+        cout << "\n===== Main Menu =====\n";
+        cout << "1. Create Ticket\n";
+        cout << "2. Read Event from File\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    }
+        switch (choice) {
+        case 1:
+            if (events.empty()) {
+                cerr << "No events available. Create an event first.\n";
+            }
+            else {
+                createTicket(events[0]); // You can modify this based on your logic
+            }
+            break;
+
+        case 2:
+            readEventFromFile(events);
+            break;
+
+        case 3:
+            cout << "Exiting the program.\n";
+            break;
+
+        default:
+            cerr << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 3);
 }
