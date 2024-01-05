@@ -103,7 +103,7 @@ void displayMenu(vector<Event>& events) {
         switch (choice) {
         case 1:
             if (events.empty()) {
-                cerr << "No events available. Create an event first.\n";
+                cerr << "No events available. \n";
             }
             else {
                 createTicket(events[0]); 
