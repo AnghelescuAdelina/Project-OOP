@@ -8,9 +8,54 @@
 #include <fstream>
 #include <vector>
 
-
-
 using namespace std;
+
+//Function to process data from a file
+
+void processFromFile(const string& filename) {
+    ifstream inputFile(filename);
+    if (!inputFile.is_open()) {
+        cerr << "Error opening file: " << filename << endl;
+        return;
+    }
+
+    string line;
+    while (getline(inputFile, line)) {
+        stringstream ss(line);
+        string recordType;
+        ss >> recordType;
+
+        if (recordType == "Ticket") {
+            // Process Ticket record
+            string category;
+            ss >> category;
+            Ticket ticket(category);
+            ticket.displayTicketInfo();
+        }
+        else if (recordType == "Event") {
+            // Process Event record
+            string eventName, eventDate, eventTime;
+            ss >> eventName >> eventDate >> eventTime;
+            Event event(eventName, eventDate, eventTime);
+            // Display or store event information as needed
+            event.displayEventInfo();
+        }
+        else if (recordType == "EventTicket") {
+            // Process EventTicket record
+            string category, eventName;
+            ss >> category >> eventName;
+            Ticket ticket(category);
+            Event event(eventName, "unknown", "unknown");
+            EventTicket eventTicket = EventTicket(category, event);
+            eventTicket.displayEventTicketInfo();
+        }
+        else {
+            cerr << "Invalid record type: " << recordType << endl;
+        }
+    }
+
+    inputFile.close();
+}
 
 int main() {
     // Generate and display multiple tickets for different categories
