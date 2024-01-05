@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Ticket {
+class Ticket : public AbstractTicket {
 private:
     string category;  // Private member variable to store the category of the ticket
     int uniqueID;     // Private member variable to store the unique ID of the ticket
@@ -58,4 +58,7 @@ public:
 
     // Static method to get the next available unique ID
     static int getNextID();
+
+    //Overdefined pure virtual method
+    void abstractMethod() const override;
 };
