@@ -2,6 +2,7 @@
 #pragma once  // Header guard to prevent multiple inclusions of the same header file
 
 #include <iostream>
+#include <vector>
 
 class EventLocation {
 private:
@@ -9,6 +10,7 @@ private:
     int numRows;         // Private member variable to store the number of rows in the event location
     int numZones;        // Private member variable to store the number of zones in the event location
     int* seatsPerRow;    // Private member variable to store the number of seats per row in the event location
+    vector<int> seatsPerRow; // Use vector instead of dynamic array
 
 public:
     // Constructors and Destructor
