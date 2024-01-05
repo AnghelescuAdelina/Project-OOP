@@ -1,22 +1,14 @@
 // Main.cpp
 #include "Ticket.h"
 #include "EventLocation.h"
-#include "Event.h"
+#include "EventTicket.h"
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
 
-//Function prototypes
-void displayMenu(vector<Event>& events);
-void createTicket(Event& event);
-void displayTicketInfo(const Ticket& ticket);
-void saveData(const vector<Event>& events);
-void restoreData(vector<Event>& events);
-Event* findEventByName(const vector<Event>& events, const string& name);
-void displayEventDetails(const Event& event);
-void readEventFromFile(vector<Event>& events);
+
 
 using namespace std;
 
