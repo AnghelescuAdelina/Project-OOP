@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "AbstractTicket.h" // Include the abstract class header
 
 using namespace std;
 
