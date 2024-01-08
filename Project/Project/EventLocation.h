@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 class EventLocation {
 private:
     int maxSeats;        // Private member variable to store the maximum number of seats in the event location
