@@ -65,4 +65,7 @@ public:
 
     // Method to display information about the event location
     void displayLocationInfo() const;
+
+    // Method to check if a seat is available
+    bool isSeatAvailable(int row, int zone, const string& category) const;
 };

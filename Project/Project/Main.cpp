@@ -56,6 +56,7 @@ void displayAvailableSeats(const EventLocation& eventLocation, const string& cat
 
 
 
+
 int main(int argumentcounter, char* argumentvector[]) {
     if (argumentcounter > 1) {
         //Comand-line mode: process data from the specified file
