@@ -42,6 +42,20 @@ bool searchEventByName(const vector<Event>& events, const string& eventName, Eve
     }
     return false;  // Event not found
 }
+// Function to display available seats for a specific category
+void displayAvailableSeats(const EventLocation& eventLocation, const string& category) {
+    // Placeholder: Display available seats for all rows and zones
+    cout << "Available seats for category " << category << ":\n";
+    for (int row = 1; row <= eventLocation.getNumRows(); ++row) {
+        for (int zone = 1; zone <= eventLocation.getNumZones(); ++zone) {
+            if (eventLocation.isSeatAvailable(row, zone, category)) {
+                cout << "Row: " << row << ", Zone: " << zone << "\n";
+            }
+        }
+    }
+}
+
+
 
 int main(int argumentcounter, char* argumentvector[]) {
     if (argumentcounter > 1) {
