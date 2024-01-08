@@ -22,7 +22,7 @@ public:
     EventLocation();
 
     // Parameterized constructor
-    EventLocation(int maxSeats, int numRows, int numZones, const int* seatsPerRow);
+    EventLocation(int maxSeats, int numRows, int numZones, const vector<int> & seatsPerRow);
 
     // Destructor
     ~EventLocation();
@@ -48,7 +48,7 @@ public:
     int getNumZones() const;
 
     // Accessor method to get the array containing the number of seats per row
-    const int* getSeatsPerRow() const;
+    const vector<int>& getSeatsPerRow() const;
 
     // Validation methods
 
@@ -62,7 +62,7 @@ public:
     void setNumZones(int numZones);
 
     // Validation method to set the array containing the number of seats per row
-    void setSeatsPerRow(const int* seatsPerRow);
+    void setSeatsPerRow(const vector<int>& seatsPerRow);
 
     // Display information
 
@@ -73,5 +73,5 @@ public:
     bool isSeatAvailable(int row, int zone, const string& category) const;
 
     //Defined the >> operator for ifstream
-    friend std::istream& operator>>(std::istream& input, EventLocation& eventLocation);
+    friend istream& operator>>(istream& input, EventLocation& eventLocation);
 };

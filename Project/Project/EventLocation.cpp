@@ -10,18 +10,14 @@ using namespace std;
 EventLocation::EventLocation() : maxSeats(0), numRows(0), numZones(0), seatsPerRow(nullptr) {}
 
 // Parameterized constructor: Initialize member variables with provided values
-EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const int* seatsPerRow)
-    : maxSeats(maxSeats), numRows(numRows), numZones(numZones) {
-    // Allocate memory for seatsPerRow and copy values
-    this->seatsPerRow = new int[numRows];
-    for (int i = 0; i < numRows; ++i) {
-        this->seatsPerRow[i] = seatsPerRow[i];
+EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const vector<int>& seatsPerRow)
+    : maxSeats(maxSeats), numRows(numRows), numZones(numZones), seatsPerRow(seatsPerRow){
+    
     }
-}
 
 // Destructor: Release dynamically allocated memory
 EventLocation::~EventLocation() {
-    delete[] seatsPerRow;
+
 }
 
 // Copy Constructor
@@ -40,15 +36,7 @@ EventLocation& EventLocation::operator=(const EventLocation& other) {
         maxSeats = other.maxSeats;
         numRows = other.numRows;
         numZones = other.numZones;
-
-        // Release existing memory
-        delete[] seatsPerRow;
-
-        // Allocate memory for seatsPerRow and copy values
-        seatsPerRow = new int[numRows];
-        for (int i = 0; i < numRows; ++i) {
-            seatsPerRow[i] = other.seatsPerRow[i];
-        }
+        seatsPerRow = other.seatsPerRow;  // Use vector's copy assignment
     }
     return *this;
 }
@@ -130,10 +118,8 @@ void EventLocation::displayLocationInfo() const {
         // Read maxSeats, numRows, and numZones from the input stream
         input >> eventLocation.maxSeats >> eventLocation.numRows >> eventLocation.numZones;
 
-        // Allocate memory for seatsPerRow
-        eventLocation.seatsPerRow = new int[eventLocation.numRows];
-
         // Read seatsPerRow values from the input stream
+        eventLocation.seatsPerRow.resize(eventLocation.numRows);
         for (int i = 0; i < eventLocation.numRows; ++i) {
             input >> eventLocation.seatsPerRow[i];
         }
