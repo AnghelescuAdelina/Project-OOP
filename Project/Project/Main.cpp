@@ -32,6 +32,7 @@ void processFromFile(const string& filename, vector<Event>& events, EventLocatio
     inputFile.close();
 }
 
+
 int main(int argumentcounter, char* argumentvector[]) {
     if (argumentcounter > 1) {
         //Comand-line mode: process data from the specified file
@@ -90,11 +91,3 @@ void displayMenu(vector<Event>& events) {
     } while (choice != 3);
 }
 
-//Function to find an event by name
-Event* findEventByName(const vector<Event>& events, const string& name) {
-    auto iterator = find_if(events.begin(), events.end(), [name](const Event& event) {
-        return event.getName() == name;
-        });
-
-    return (iterator != events.end()) ? &(*iterator) : nullptr;
-}
