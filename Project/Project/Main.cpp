@@ -65,61 +65,98 @@ bool sellTicket(EventTicket& eventTicket, const EventLocation& eventLocation, in
 }
 
 
-int main(int argumentcounter, char* argumentvector[]) {
-    if (argumentcounter > 1) {
-        //Comand-line mode: process data from the specified file
-        processFromFile(argumentvector[1]);
+int main(int argc, char* argv[]) {
+    if (argc > 1) {
+        // Command-line mode: process data from the specified file
+        vector<Event> events;
+        EventLocation eventLocation;
+        processFromFile(argv[1], events, eventLocation);
     }
     else {
-        //Interactive mode:display menu for user interaction
+        // Interactive mode: display menu for user interaction
         int choice;
         Ticket ticket;
         EventLocation eventLocation;
         EventTicket eventTicket;
+        vector<Event> events;  // Store events from the file
 
         do {
             cout << "Menu:\n";
-            cout << "1.";
-            cout<<"2."
-        }
+            cout << "1. Search and display event by name\n";
+            cout << "2. Check ticket availability\n";
+            cout << "3. Sell a ticket\n";
+            cout << "4. Exit\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            switch (choice) {
+            case 1:
+                // Search and display event by name
+            {
+                string eventName;
+                cout << "Enter event name to search: ";
+                cin >> eventName;
+
+                Event foundEvent;
+                if (searchEventByName(events, eventName, foundEvent)) {
+                    // Display event information
+                    foundEvent.displayEventInfo();
+                }
+                else {
+                    cout << "Event not found.\n";
+                }
+            }
+            break;
+
+            case 2:
+                // Check ticket availability
+            {
+                // Assume the user has selected an event and knows the category
+                string category;;
+                cout << "Enter ticket category: ";
+                cin >> ws;
+                getline(cin, category);
+
+                // Display available seats for the specified category
+                displayAvailableSeats(eventLocation, category);
+            }
+            break;
+
+            case 3:
+                // Sell a ticket
+            {
+                // Assume the user has selected an event and knows the category
+                string category;
+                cout << "Enter ticket category: ";
+                cin >> ws;
+                getline(cin, category);
+
+                // Example: Sell a ticket for a specific row and zone
+                int row, zone;
+                cout << "Enter row and zone: ";
+                cin >> row >> zone;
+
+                if (sellTicket(eventTicket, eventLocation, row, zone)) {
+                    cout << "Ticket sold successfully!\n";
+                }
+                else {
+                    cout << "Failed to sell ticket.\n";
+                }
+            }
+            break;
+
+            case 4:
+                // Exit the program
+                cout << "Exiting the program.\n";
+                break;
+
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+            }
+
+        } while (choice != 4);
     }
-}
 
-//Function implementations
-
-// Function to display the main menu
-void displayMenu(vector<Event>& events) {
-    int choice;
-
-    do {
-        cout << "\n===== Main Menu =====\n";
-        cout << "1. Create Ticket\n";
-        cout << "2. Read Event from File\n";
-        cout << "3. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
-            if (events.empty()) {
-                cerr << "No events available. \n";
-            }
-            else {
-                createTicket(events[0]); 
-            }
-            break;
-
-        case 2:
-            readEventFromFile(events);
-            break;
-
-        case 3:
-            cout << "Exiting the program.\n";
-            break;
-
-        default:
-            cerr << "Invalid choice. Please try again.\n";
-        }
-    } while (choice != 3);
+    return 0;
 }
 
