@@ -32,6 +32,16 @@ void processFromFile(const string& filename, vector<Event>& events, EventLocatio
     inputFile.close();
 }
 
+// Function to search for an event by name
+bool searchEventByName(const vector<Event>& events, const string& eventName, Event& foundEvent) {
+    for (const auto& event : events) {
+        if (event.getName() == eventName) {
+            foundEvent = event;
+            return true;  // Event found
+        }
+    }
+    return false;  // Event not found
+}
 
 int main(int argumentcounter, char* argumentvector[]) {
     if (argumentcounter > 1) {
