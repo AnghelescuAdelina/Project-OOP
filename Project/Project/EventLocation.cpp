@@ -2,6 +2,7 @@
 #include "EventLocation.h"
 #include <iostream>
 
+
 using namespace std;
 
 // Default constructor: Initialize member variables to default values

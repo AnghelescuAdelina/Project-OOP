@@ -54,7 +54,15 @@ void displayAvailableSeats(const EventLocation& eventLocation, const string& cat
     }
 }
 
-
+// Function to sell a ticket
+bool sellTicket(EventTicket& eventTicket, const EventLocation& eventLocation, int row, int zone) {
+    //Sell the ticket and update availability
+    if (eventLocation.isSeatAvailable(row, zone, eventTicket.getCategory())) {
+        eventTicket.sellTicket(row, zone);
+        return true;
+    }
+    return false;
+}
 
 
 int main(int argumentcounter, char* argumentvector[]) {
