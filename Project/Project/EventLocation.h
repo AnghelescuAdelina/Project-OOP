@@ -14,6 +14,7 @@ private:
     vector<int> seatsPerRow; // Use vector instead of dynamic array
 
 public:
+
     // Constructors and Destructor
 
     // Default constructor
@@ -69,4 +70,7 @@ public:
 
     // Method to check if a seat is available
     bool isSeatAvailable(int row, int zone, const string& category) const;
+
+    //Defined the >> operator for ifstream
+    friend std::istream& operator>>(std::istream& input, EventLocation& eventLocation);
 };
