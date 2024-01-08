@@ -7,28 +7,18 @@
 using namespace std;
 
 // Default constructor: Initialize member variables to default values
-EventLocation::EventLocation() : maxSeats(0), numRows(0), numZones(0), seatsPerRow(nullptr) {}
+EventLocation::EventLocation() : maxSeats(0), numRows(0), numZones(0) {}
 
 // Parameterized constructor: Initialize member variables with provided values
 EventLocation::EventLocation(int maxSeats, int numRows, int numZones, const vector<int>& seatsPerRow)
-    : maxSeats(maxSeats), numRows(numRows), numZones(numZones), seatsPerRow(seatsPerRow){
-    
-    }
+    : maxSeats(maxSeats), numRows(numRows), numZones(numZones), seatsPerRow(seatsPerRow) {}
 
 // Destructor: Release dynamically allocated memory
-EventLocation::~EventLocation() {
-
-}
+EventLocation::~EventLocation() {}
 
 // Copy Constructor
 EventLocation::EventLocation(const EventLocation& other)
-    : maxSeats(other.maxSeats), numRows(other.numRows), numZones(other.numZones) {
-    // Allocate memory for seatsPerRow and copy values
-    this->seatsPerRow = new int[numRows];
-    for (int i = 0; i < numRows; ++i) {
-        this->seatsPerRow[i] = other.seatsPerRow[i];
-    }
-}
+    : maxSeats(other.maxSeats), numRows(other.numRows), numZones(other.numZones), seatsPerRow(other.seatsPerRow) {}
 
 // Copy Assignment Operator
 EventLocation& EventLocation::operator=(const EventLocation& other) {
@@ -36,7 +26,7 @@ EventLocation& EventLocation::operator=(const EventLocation& other) {
         maxSeats = other.maxSeats;
         numRows = other.numRows;
         numZones = other.numZones;
-        seatsPerRow = other.seatsPerRow;  // Use vector's copy assignment
+        seatsPerRow = other.seatsPerRow;
     }
     return *this;
 }
@@ -61,7 +51,7 @@ int EventLocation::getNumZones() const {
     return numZones;
 }
 
-const int* EventLocation::getSeatsPerRow() const {
+const vector<int>& EventLocation::getSeatsPerRow() const {
     return seatsPerRow;
 }
 
@@ -92,15 +82,8 @@ void EventLocation::setNumZones(int numZones) {
     }
 }
 
-void EventLocation::setSeatsPerRow(const int* seatsPerRow) {
-    // Release existing memory
-    delete[] this->seatsPerRow;
-
-    // Allocate memory for seatsPerRow and copy values
-    this->seatsPerRow = new int[numRows];
-    for (int i = 0; i < numRows; ++i) {
-        this->seatsPerRow[i] = seatsPerRow[i];
-    }
+void EventLocation::setSeatsPerRow(const vector<int>& seatsPerRow) {
+    this->seatsPerRow = seatsPerRow;
 }
 
 void EventLocation::displayLocationInfo() const {
@@ -112,18 +95,18 @@ void EventLocation::displayLocationInfo() const {
         cout << seatsPerRow[i] << " ";
     }
     cout << "\n";
+}
 
-    //Defined the >> operator for ifstream
-    istream& operator>>(istream & input, EventLocation & eventLocation) {
-        // Read maxSeats, numRows, and numZones from the input stream
-        input >> eventLocation.maxSeats >> eventLocation.numRows >> eventLocation.numZones;
+//Defined the >> operator for ifstream
+istream& operator>>(istream& input, EventLocation& eventLocation) {
+    // Read maxSeats, numRows, and numZones from the input stream
+    input >> eventLocation.maxSeats >> eventLocation.numRows >> eventLocation.numZones;
 
-        // Read seatsPerRow values from the input stream
-        eventLocation.seatsPerRow.resize(eventLocation.numRows);
-        for (int i = 0; i < eventLocation.numRows; ++i) {
-            input >> eventLocation.seatsPerRow[i];
-        }
-
-        return input;
+    // Read seatsPerRow values from the input stream
+    eventLocation.seatsPerRow.resize(eventLocation.numRows);
+    for (int i = 0; i < eventLocation.numRows; ++i) {
+        input >> eventLocation.seatsPerRow[i];
     }
+
+    return input;
 }

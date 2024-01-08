@@ -33,4 +33,7 @@ public:
 
     // Override abstract method
     void abstractMethod() const override;
+
+    //declaration of sellTicket function
+        void sellTicket();
 };

@@ -85,3 +85,9 @@ void Event::displayEventInfo() const {
     cout << "Date: " << date << "\n";
     cout << "Time: " << time << "\n";
 }
+
+//Implementation of the operator >>
+istream& operator>>(istream& input, Event& event) {
+    input >> event.name >> event.date >> event.time;
+    return input;
+}

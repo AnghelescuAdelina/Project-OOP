@@ -38,3 +38,4 @@ void EventTicket::displayEventTicketInfo() const {
 void EventTicket::abstractMethod() const {
     // Implementation of the abstract method
 }
+

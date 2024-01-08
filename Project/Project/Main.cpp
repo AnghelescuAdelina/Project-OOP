@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
         // Command-line mode: process data from the specified file
         vector<Event> events;
         EventLocation eventLocation;
-        processFromFile(argv[1], events, eventLocation);
+        processFromFile("your_filename.txt", events, eventLocation);
     }
     else {
         // Interactive mode: display menu for user interaction
