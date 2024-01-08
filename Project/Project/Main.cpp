@@ -12,61 +12,44 @@ using namespace std;
 
 //Function to process data from a file
 
-void processFromFile(const string& filename) {
+void processFromFile(const string& filename, vector<Event>& events, EventLocation& eventLocation) {
     ifstream inputFile(filename);
     if (!inputFile.is_open()) {
         cerr << "Error opening file: " << filename << endl;
         return;
     }
 
-    string line;
-    while (getline(inputFile, line)) {
-        stringstream ss(line);
-        string recordType;
-        ss >> recordType;
+    // Read eventLocation information from the file
+    inputFile >> eventLocation;
 
-        if (recordType == "Ticket") {
-            // Process Ticket record
-            string category;
-            ss >> category;
-            Ticket ticket(category);
-            ticket.displayTicketInfo();
-        }
-        else if (recordType == "Event") {
-            // Process Event record
-            string eventName, eventDate, eventTime;
-            ss >> eventName >> eventDate >> eventTime;
-            Event event(eventName, eventDate, eventTime);
-            // Display or store event information as needed
-            event.displayEventInfo();
-        }
-        else if (recordType == "EventTicket") {
-            // Process EventTicket record
-            string category, eventName;
-            ss >> category >> eventName;
-            Ticket ticket(category);
-            Event event(eventName, "unknown", "unknown");
-            EventTicket eventTicket = EventTicket(category, event);
-            eventTicket.displayEventTicketInfo();
-        }
-        else {
-            cerr << "Invalid record type: " << recordType << endl;
-        }
+    // Read events from the file
+    while (!inputFile.eof()) {
+        Event event;
+        inputFile >> event;
+        events.push_back(event);
     }
 
     inputFile.close();
 }
 
-int main() {
-    
+int main(int argumentcounter, char* argumentvector[]) {
+    if (argumentcounter > 1) {
+        //Comand-line mode: process data from the specified file
+        processFromFile(argumentvector[1]);
     }
+    else {
+        //Interactive mode:display menu for user interaction
+        int choice;
+        Ticket ticket;
+        EventLocation eventLocation;
+        EventTicket eventTicket;
 
-    // Display an error message if the entered ticket ID is not valid
-    if (!validTicket) {
-        cerr << "Invalid ticket ID.\n";
+        do {
+            cout << "Menu:\n";
+            cout << "1.";
+            cout<<"2."
+        }
     }
-
-    return 0;
 }
 
 //Function implementations
