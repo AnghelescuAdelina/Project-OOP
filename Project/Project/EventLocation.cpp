@@ -1,7 +1,8 @@
 // EventLocation.cpp
 #include "EventLocation.h"
 #include <iostream>
-
+#include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -123,4 +124,20 @@ void EventLocation::displayLocationInfo() const {
         cout << seatsPerRow[i] << " ";
     }
     cout << "\n";
+
+    //Defined the >> operator for ifstream
+    std::istream& operator>>(std::istream & input, EventLocation & eventLocation) {
+        // Read maxSeats, numRows, and numZones from the input stream
+        input >> eventLocation.maxSeats >> eventLocation.numRows >> eventLocation.numZones;
+
+        // Allocate memory for seatsPerRow
+        eventLocation.seatsPerRow = new int[eventLocation.numRows];
+
+        // Read seatsPerRow values from the input stream
+        for (int i = 0; i < eventLocation.numRows; ++i) {
+            input >> eventLocation.seatsPerRow[i];
+        }
+
+        return input;
+    }
 }
