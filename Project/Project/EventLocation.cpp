@@ -126,7 +126,7 @@ void EventLocation::displayLocationInfo() const {
     cout << "\n";
 
     //Defined the >> operator for ifstream
-    std::istream& operator>>(std::istream & input, EventLocation & eventLocation) {
+    istream& operator>>(istream & input, EventLocation & eventLocation) {
         // Read maxSeats, numRows, and numZones from the input stream
         input >> eventLocation.maxSeats >> eventLocation.numRows >> eventLocation.numZones;
 

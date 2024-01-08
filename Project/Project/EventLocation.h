@@ -10,7 +10,6 @@ private:
     int maxSeats;        // Private member variable to store the maximum number of seats in the event location
     int numRows;         // Private member variable to store the number of rows in the event location
     int numZones;        // Private member variable to store the number of zones in the event location
-    int* seatsPerRow;    // Private member variable to store the number of seats per row in the event location
     vector<int> seatsPerRow; // Use vector instead of dynamic array
 
 public:
