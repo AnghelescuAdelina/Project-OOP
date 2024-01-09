@@ -11,6 +11,11 @@ private:
     string category;  // Private member variable to store the category of the ticket
     int uniqueID;     // Private member variable to store the unique ID of the ticket
     static int nextID;  // Static member variable to keep track of the next available unique ID
+    string userName;
+    string userEmail;
+    string eventName;
+    int seatRow;
+    int seatNumber;
 
 public:
     // Constructors and Destructor
@@ -35,26 +40,27 @@ public:
     // Equality operator
     bool operator==(const Ticket& other) const;
 
-    // Accessors
-
-    // Accessor method to get the category of the ticket
+    // Accessors and Mutators
     const string& getCategory() const;
-
-    // Accessor method to get the unique ID of the ticket
     int getUniqueID() const;
-
-    // Validation method
-
-    // Validation method to set the category of the ticket
     void setCategory(const string& category);
 
-    // Display information
+    // New methods to set user details and event details
+    void setUserName(const string& userName);
+    void setUserEmail(const string& userEmail);
+    void setEventName(const string& eventName);
+    void setSeat(int row, int number);
 
-    // Method to display information about the ticket
+    // Method to get user and event details (if needed)
+    string getUserName() const;
+    string getUserEmail() const;
+    string getEventName() const;
+    int getSeatRow() const;
+    int getSeatNumber() const;
+
+    // Display information
     void displayTicketInfo() const;
 
     // Static method
-
-    // Static method to get the next available unique ID
     static int getNextID();
 };

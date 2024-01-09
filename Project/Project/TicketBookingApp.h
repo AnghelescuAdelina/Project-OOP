@@ -17,22 +17,40 @@ private:
     EventLocation eventlocation;     // Store event location details
     unordered_map<int, Ticket> ticketMap; // Mapping of ticket ID to Ticket object
     int nextTicketID; //To keep track of the next available unique ticket ID
-
-    // Helper functions for managing events and tickets
-    void loadEventsFromFile(const string& filename);
-    void saveTicketsToFile(const string& filename);
+    int numRows;
+    int seatsPerRow;
+    char** seatAvailability;
 
 public:
     // Constructor
     TicketBookingApp(const string& eventFilename, const string& locationFilename);
 
-    // Public methods for user interaction
-    void run();
-    void displayEventList() const;
+    // Method to process a file for ticket booking
+    void processFile(const string& filename);
+
+    // Method to create and store a ticket
+    void createAndStoreTicket(const string& eventName, const string& ticketCategory,
+        const string& userName, const string& userEmail);
+
+    // Method to book a ticket
     void bookTicket();
-    void displayTicketList() const;
+
+    // Method to display ticket details
     void displayTicketDetails();
-    void saveTicketsToFile(const std::string& filename) const;
-    void loadTicketsFromFile(const std::string& filename);
+
+    // Method to save ticket details to a file
+    void saveTicketsToFile(const string& filename) const;
+
+    // Method to load events from a file
+    void loadEventsFromFile(const string& filename);
+
+    // Method to save user details to a file
+    void saveUserDetailsToFile(const Ticket& ticket, const string& filename);
+
+    // Main method to run the application
+    void run();
+
+    // Destructor (if you need to manage resources, like dynamically allocated memory)
+    ~TicketBookingApp();
     
 };
