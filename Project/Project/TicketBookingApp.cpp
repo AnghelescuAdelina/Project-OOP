@@ -81,7 +81,7 @@ void TicketBookingApp::bookTicket() {
     getline(cin, userName);
     cout << "Enter User Email: ";
     cin >> userEmail;
-
+    cout << "----------------------------";
     createAndStoreTicket(eventName, ticketCategory, userName, userEmail);
 }
 void TicketBookingApp::processFile(const string& eventDetails) {
@@ -133,6 +133,7 @@ void TicketBookingApp::loadEventsFromFile(const string& filename) {
 }
 
 void TicketBookingApp::displayEventList() {
+    cout << "-----------------------------------\n";
     for (auto event : events)
         event.displayEventInfo();
 }
@@ -140,6 +141,7 @@ void TicketBookingApp::displayEventList() {
 void TicketBookingApp::run() {
     int choice;
     while (true) {
+        cout << "------------------------------------\n";
         cout << "1. View Events\n";
         cout << "2. Book Ticket\n";
         cout << "3.Display Ticket Details\n";
