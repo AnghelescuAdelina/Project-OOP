@@ -76,13 +76,13 @@ void TicketBookingApp::saveUserDetailsToFile(const Ticket& ticket, const string&
 }
 void TicketBookingApp::bookTicket() {
     string eventName, userName, userEmail, ticketCategory;
-    cout << "Enter Event Name: ";
+    cout << "Enter Event Name: "<<"\n";
     cin >> eventName;
-    cout << "Enter Ticket Category: ";
+    cout << "Enter Ticket Category: "<<"\n";
     cin >> ticketCategory;
-    cout << "Enter User Name: ";
+    cout << "Enter User Name: "<<"\n";
     cin >> userName;
-    cout << "Enter User Email: ";
+    cout << "Enter User Email: "<<"\n";
     cin >> userEmail;
 
     //Create and store tickets with all the details
@@ -127,7 +127,7 @@ void TicketBookingApp::loadEventsFromFile(const string& filename) {
         return;
     }
     string name, date, time;
-    while (getline(file, name, ' ') && file >> date >> time) {
+    while (getline(file, name) && getline(file, date) && getline(file, time)) {
         events.push_back(Event(name, date, time));
         file.ignore(numeric_limits<streamsize>::max(), '\n');
     }
