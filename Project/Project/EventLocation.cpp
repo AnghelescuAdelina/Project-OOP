@@ -6,7 +6,7 @@
 using namespace std;
 
 // Default constructor: Initialize member variables to default values
-EventLocation::EventLocation() : maxSeats(0), numRows(0), numZones(0), seatsPerRow(nullptr) {}
+EventLocation::EventLocation(const string& filename) {}
 
 // New constructor to initialize from a file
 EventLocation::EventLocation(const string& filename) {

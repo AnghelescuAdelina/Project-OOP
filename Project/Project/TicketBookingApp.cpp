@@ -1,6 +1,14 @@
 // TicketBookingApp.cpp
-#include "TicketBookingApp.h"
 
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <unordered_map>
+
+#include "TicketBookingApp.h"
+#include "EventLocation.h"
+#include "Event.h"
+#include "Ticket.h"
 using namespace std;
 
 // Constructor to initialize events and location
@@ -18,8 +26,6 @@ void TicketBookingApp::createAndStoreTicket(const string& eventName, const strin
         // Event found
         Event& event = *it;
 
-        // This is a simplified version, modify according to your seat matrix logic
-        int seatRow = -1, seatNumber = -1;
         for (int row = 0; row < numRows; ++row) {
             for (int seat = 0; seat < seatsPerRow; ++seat) {
                 if (seatAvailability[row][seat] == 0) { // Assuming 0 means available
@@ -56,10 +62,10 @@ void TicketBookingApp::createAndStoreTicket(const string& eventName, const strin
         cerr << "Event not found: " << eventName << endl;
     }
 }
-void TicketBookingApp::saveUserDetailsToFile(const Ticket& ticket, const string& filename) {
-    ofstream outFile(filename, ios::app);  // Open in append mode to add to the file
+void TicketBookingApp::saveUserDetailsToFile(const Ticket& ticket, const string& SavedUserDetails) {
+    ofstream outFile("SavedUserDetails", ios::app);
     if (!outFile) {
-        cerr << "Failed to open file for writing user details: " << filename << endl;
+        cerr << "Failed to open file for writing user details: " << SavedUserDetails << endl;
         return;
     }
 
@@ -80,10 +86,10 @@ void TicketBookingApp::bookTicket() {
     //Create and store tickets with all the details
     createAndStoreTicket(eventName, ticketCategory, userName, userEmail);
 }
-void TicketBookingApp::processFile(const string& filename) {
-    ifstream file(filename);
+void TicketBookingApp::processFile(const string& eventDetails) {
+    ifstream file(eventDetails);
     if (!file) {
-        cerr << "Failed to open file: " << filename << endl;
+        cerr << "Failed to open file: " <<eventDetails << endl;
         return;
     }
 
@@ -110,14 +116,13 @@ void TicketBookingApp::displayTicketDetails() {
     }
 }
 void TicketBookingApp::saveTicketsToFile(const string& filename) const {
-    // Save ticket details to a file (e.g., ticket ID, name, event details, etc.)
-    // ...
+    ofstream outFile("savedTickets", ios::app);
 }
 
-void TicketBookingApp::loadEventsFromFile(const string& filename) {
+void TicketBookingApp::loadEventsFromFile(filename) {
     ifstream file(filename);
     if (!file) {
-        cerr << "Error opening file: " << filename << endl;
+        cerr << "Error opening file: eventsDetails " << endl;
         return;
     }
     string name, date, time;

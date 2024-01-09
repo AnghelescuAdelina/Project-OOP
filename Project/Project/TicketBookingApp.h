@@ -26,10 +26,7 @@ public:
 
 
     // Constructor
-    TicketBookingApp(const string& eventFilename, const string& locationFilename)
-        :eventlocation(locationFilename) {
-        loadEventsFromFile(eventFilename);
-    }
+    TicketBookingApp(const string& eventFilename="eventsDetails", const string& locationFilename="eventlocations");
 
     // Method to process a file for ticket booking
     void processFile(const string& filename);
@@ -48,7 +45,7 @@ public:
     void saveTicketsToFile(const string& filename) const;
 
     // Method to load events from a file
-    void loadEventsFromFile(const string& filename);
+    void loadEventsFromFile();
 
     // Method to save user details to a file
     void saveUserDetailsToFile(const Ticket& ticket, const string& filename);
@@ -58,8 +55,4 @@ public:
 
     // Main method to run the application
     void run();
-
-    // Destructor (if you need to manage resources, like dynamically allocated memory)
-    ~TicketBookingApp();
-    
 };

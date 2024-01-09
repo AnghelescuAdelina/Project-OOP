@@ -31,6 +31,9 @@ public:
 
     // Destructor declaration
     ~Ticket();
+    
+    Ticket() : uniqueID(nextID++), seatRow(-1), seatNumber(-1) {}
+    Ticket(const string& category) : category(category), uniqueID(nextID++), seatRow(-1), seatNumber(-1) {}
 
     // Assignment and Equality operators
 

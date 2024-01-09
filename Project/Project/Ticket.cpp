@@ -18,6 +18,7 @@ Ticket::~Ticket() {}
 // Copy constructor: Copy the 'category' from 'other' and generate a new unique ID
 Ticket::Ticket(const Ticket& other) : category(other.category), uniqueID(nextID++) {}
 
+
 // Copy assignment operator
 Ticket& Ticket::operator=(const Ticket& other) {
     if (this != &other) {

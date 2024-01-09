@@ -2,6 +2,7 @@
 #pragma once  // Header guard to prevent multiple inclusions of the same header file
 
 #include <iostream>
+#include <string>
 
 class EventLocation {
 private:
@@ -17,7 +18,7 @@ public:
     EventLocation();
 
     // Parameterized constructor
-    EventLocation(int maxSeats, int numRows, int numZones, const int* seatsPerRow);
+    EventLocation(const string& filename="eventLocations");
 
     // Destructor
     ~EventLocation();
