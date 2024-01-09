@@ -6,9 +6,6 @@ using namespace std;
 // Constructor to initialize events and location
 TicketBookingApp::TicketBookingApp(const string& eventFilename, const string& locationFilename)
     :eventlocation(0, 0, 0, {}) {
-    // Load events from event file (similar to loadEventsFromFile)
-   // Load event location matrix from location file
-   // Initialize ticket-related variables
     nextTicketID = 1;
 }
 void TicketBookingApp::createAndStoreTicket(const string& eventName, const string& ticketCategory, const string& userName, const string& userEmail) {
@@ -80,7 +77,7 @@ void TicketBookingApp::bookTicket() {
     cout << "Enter User Email: ";
     cin >> userEmail;
 
-    // Now, create and store the ticket with all details
+    //Create and store tickets with all the details
     createAndStoreTicket(eventName, ticketCategory, userName, userEmail);
 }
 void TicketBookingApp::processFile(const string& filename) {

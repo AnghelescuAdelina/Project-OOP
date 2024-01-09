@@ -22,6 +22,9 @@ private:
     char** seatAvailability;
 
 public:
+    TicketBookingApp(); // Default constructor
+
+
     // Constructor
     TicketBookingApp(const string& eventFilename, const string& locationFilename);
 
@@ -46,6 +49,9 @@ public:
 
     // Method to save user details to a file
     void saveUserDetailsToFile(const Ticket& ticket, const string& filename);
+    
+    //Method to display the list with the events
+    void displayEventList();
 
     // Main method to run the application
     void run();
