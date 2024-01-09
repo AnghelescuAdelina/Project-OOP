@@ -25,6 +25,9 @@ public:
     // Copy constructor
     EventLocation(const EventLocation& other);
 
+    // New constructor declaration
+    EventLocation(const string& filename);
+
     // Copy Assignment Operator
     EventLocation& operator=(const EventLocation& other);
 

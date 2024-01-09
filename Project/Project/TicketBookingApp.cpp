@@ -5,8 +5,8 @@ using namespace std;
 
 // Constructor to initialize events and location
 TicketBookingApp::TicketBookingApp(const string& eventFilename, const string& locationFilename)
-    :eventlocation(0, 0, 0, {}) {
-    nextTicketID = 1;
+    :eventlocation(locationFilename) {
+    loadEventsFromFile(eventFilename);
 }
 void TicketBookingApp::createAndStoreTicket(const string& eventName, const string& ticketCategory, const string& userName, const string& userEmail) {
     // Find the event in the events list
@@ -121,8 +121,9 @@ void TicketBookingApp::loadEventsFromFile(const string& filename) {
         return;
     }
     string name, date, time;
-    while (file >> name >> date >> time) {
+    while (getline(file, name,' ')&& file>>date>>time) {
         events.push_back(Event(name, date, time));
+        file.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     file.close();
 }

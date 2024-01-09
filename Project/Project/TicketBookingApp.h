@@ -26,7 +26,10 @@ public:
 
 
     // Constructor
-    TicketBookingApp(const string& eventFilename, const string& locationFilename);
+    TicketBookingApp(const string& eventFilename, const string& locationFilename)
+        :eventlocation(locationFilename) {
+        loadEventsFromFile(eventFilename);
+    }
 
     // Method to process a file for ticket booking
     void processFile(const string& filename);
