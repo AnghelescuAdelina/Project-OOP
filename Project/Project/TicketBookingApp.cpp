@@ -1,8 +1,10 @@
 // TicketBookingApp.cpp
 #include "TicketBookingApp.h"
 
+using namespace std;
+
 // Constructor to initialize events and location
-TicketBookingApp::TicketBookingApp(const std::string& eventFilename, const std::string& locationFilename) {
+TicketBookingApp::TicketBookingApp(const string& eventFilename, const string& locationFilename) {
     // Load events and location from files
     loadEventsFromFile(eventFilename);
 
@@ -11,12 +13,12 @@ TicketBookingApp::TicketBookingApp(const std::string& eventFilename, const std::
 }
 
 // Helper function to load events from a file
-void TicketBookingApp::loadEventsFromFile(const std::string& filename) {
+void TicketBookingApp::loadEventsFromFile(const string& filename) {
     // Read events from the file and populate the 'events' vector
 }
 
 // Helper function to save issued tickets to a file
-void TicketBookingApp::saveTicketsToFile(const std::string& filename) {
+void TicketBookingApp::saveTicketsToFile(const string& filename) {
     // Write issued tickets to the file
 }
 
@@ -47,7 +49,7 @@ TicketBookingApp::~TicketBookingApp() {
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " event_filename location_filename" << std::endl;
+        cerr << "Usage: " << argv[0] << " event_filename location_filename" << endl;
         return 1;
     }
 
