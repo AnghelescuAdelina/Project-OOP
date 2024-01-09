@@ -36,5 +36,11 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TicketBookingApp.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TicketBookingApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

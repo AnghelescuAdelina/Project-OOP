@@ -6,7 +6,7 @@
 using namespace std;
 
 class Event {
-public:
+private:
     string name;
     string date;
     string time;

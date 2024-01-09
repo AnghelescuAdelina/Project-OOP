@@ -2,27 +2,22 @@
 #pragma once  // Header guard to prevent multiple inclusions of the same header file
 
 #include <iostream>
-#include <vector>
-#include <string>
-
-using namespace std;
 
 class EventLocation {
 private:
     int maxSeats;        // Private member variable to store the maximum number of seats in the event location
     int numRows;         // Private member variable to store the number of rows in the event location
     int numZones;        // Private member variable to store the number of zones in the event location
-    vector<int> seatsPerRow; // Use vector instead of dynamic array
+    int* seatsPerRow;    // Private member variable to store the number of seats per row in the event location
 
 public:
-
     // Constructors and Destructor
 
     // Default constructor
     EventLocation();
 
     // Parameterized constructor
-    EventLocation(int maxSeats, int numRows, int numZones, const vector<int> & seatsPerRow);
+    EventLocation(int maxSeats, int numRows, int numZones, const int* seatsPerRow);
 
     // Destructor
     ~EventLocation();
@@ -48,7 +43,7 @@ public:
     int getNumZones() const;
 
     // Accessor method to get the array containing the number of seats per row
-    const vector<int>& getSeatsPerRow() const;
+    const int* getSeatsPerRow() const;
 
     // Validation methods
 
@@ -62,16 +57,10 @@ public:
     void setNumZones(int numZones);
 
     // Validation method to set the array containing the number of seats per row
-    void setSeatsPerRow(const vector<int>& seatsPerRow);
+    void setSeatsPerRow(const int* seatsPerRow);
 
     // Display information
 
     // Method to display information about the event location
     void displayLocationInfo() const;
-
-    // Method to check if a seat is available
-    bool isSeatAvailable(int row, int zone, const string& category) const;
-
-    //Defined the >> operator for ifstream
-    friend istream& operator>>(istream& input, EventLocation& eventLocation);
 };
