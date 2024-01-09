@@ -86,7 +86,7 @@ void TicketBookingApp::bookTicket() {
     cin >> userEmail;
 
     //Create and store tickets with all the details
-    createAndStoreTicket(eventName, ticketCategory, userName, userEmail);
+    createAndStoreTicket(eventID, eventName, ticketCategory, userName, userEmail);
 }
 void TicketBookingApp::processFile(const string& eventDetails) {
     ifstream file(eventDetails);
