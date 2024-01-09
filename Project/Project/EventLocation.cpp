@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-// New constructor to initialize from a file
 EventLocation::EventLocation(const string& filename) {
     ifstream file(filename);
     if (!file) {
@@ -26,15 +24,13 @@ EventLocation::EventLocation(const string& filename) {
     }
 
     maxSeats = seatCount;
-    numZones = 1;  // Assuming a single zone for simplicity
+    numZones = 1; 
 }
 
-// Destructor: Release dynamically allocated memory
 EventLocation::~EventLocation() {
     delete[] seatsPerRow;
 }
 
-// Copy Constructor
 EventLocation::EventLocation(const EventLocation& other)
     : maxSeats(other.maxSeats), numRows(other.numRows), numZones(other.numZones) {
     seatsPerRow = new int[numRows];
@@ -43,7 +39,6 @@ EventLocation::EventLocation(const EventLocation& other)
     }
 }
 
-// Copy Assignment Operator
 EventLocation& EventLocation::operator=(const EventLocation& other) {
     if (this != &other) {
         delete[] seatsPerRow;

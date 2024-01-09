@@ -1,4 +1,4 @@
-// TicketBookingApp.cpp
+﻿// TicketBookingApp.cpp
 
 #include <iostream>
 #include <fstream>
@@ -12,28 +12,26 @@
 
 using namespace std;
 
-// Constructor to initialize events and location
 TicketBookingApp::TicketBookingApp(const string& eventFilename, const string& locationFilename)
     :eventlocation(locationFilename) {
     loadEventsFromFile(eventFilename);
 }
+
 void TicketBookingApp::createAndStoreTicket(const string& eventName, const string& ticketCategory, const string& userName, const string& userEmail) {
-    // Find the event in the events list
     auto it = find_if(events.begin(), events.end(), [&eventName](const Event& event) {
         return event.getName() == eventName;
         });
     int seatRow = -1;
     int seatNumber = -1;
     if (it != events.end()) {
-        // Event found
         Event& event = *it;
 
         for (int row = 0; row < numRows; ++row) {
             for (int seat = 0; seat < seatsPerRow; ++seat) {
-                if (seatAvailability[row][seat] == 0) { // Assuming 0 means available
+                if (seatAvailability[row][seat] == 0) { 
                     seatRow = row;
                     seatNumber = seat;
-                    seatAvailability[row][seat] = 1; // Mark as taken
+                    seatAvailability[row][seat] = 1; 
                     break;
                 }
             }
@@ -45,22 +43,19 @@ void TicketBookingApp::createAndStoreTicket(const string& eventName, const strin
             return;
         }
 
-        // Create a Ticket object with the provided details
         Ticket newTicket(ticketCategory);
-        newTicket.setUserName(userName); // Assuming these methods exist in Ticket class
+        newTicket.setUserName(userName);
         newTicket.setUserEmail(userEmail);
-        newTicket.setEventName(eventName); // Set event name
-        newTicket.setSeat(seatRow, seatNumber); // Set seat details
+        newTicket.setEventName(eventName); 
+        newTicket.setSeat(seatRow, seatNumber); 
 
-        // Add the Ticket to the ticketMap
         ticketMap[nextTicketID] = newTicket;
         cout << "Ticket booked successfully. Ticket ID: " << nextTicketID << endl;
 
-        // Increment the ticket ID for the next ticket
         nextTicketID++;
     }
     else {
-        // Event not found
+
         cerr << "Event not found: " << eventName << endl;
     }
 }
@@ -75,18 +70,19 @@ void TicketBookingApp::saveUserDetailsToFile(const Ticket& ticket, const string&
     outFile.close();
 }
 void TicketBookingApp::bookTicket() {
-    string eventName, userName, userEmail, ticketCategory;
-    cout << "Enter Event Name: "<<"\n";
-    cin >> eventName;
-    cout << "Enter Ticket Category: "<<"\n";
+    string eventName, ticketCategory, userName, userEmail;
+    cout << "Enter Event Name: ";
+    cin.ignore();
+    getline(cin, eventName);
+    cout << "Enter Ticket Category: ";
     cin >> ticketCategory;
-    cout << "Enter User Name: "<<"\n";
-    cin >> userName;
-    cout << "Enter User Email: "<<"\n";
+    cin.ignore();
+    cout << "Enter User Name: ";
+    getline(cin, userName);
+    cout << "Enter User Email: ";
     cin >> userEmail;
 
-    //Create and store tickets with all the details
-    createAndStoreTicket(eventID, eventName, ticketCategory, userName, userEmail);
+    createAndStoreTicket(eventName, ticketCategory, userName, userEmail);
 }
 void TicketBookingApp::processFile(const string& eventDetails) {
     ifstream file(eventDetails);
@@ -97,7 +93,7 @@ void TicketBookingApp::processFile(const string& eventDetails) {
 
     string eventName, ticketCategory;
     while (file >> eventName >> ticketCategory) {
-        createAndStoreTicket(eventName, ticketCategory, "", "");  // Empty strings for userName and userEmail
+        createAndStoreTicket(eventName, ticketCategory, "", "");  
     }
 
     file.close();
@@ -110,7 +106,6 @@ void TicketBookingApp::displayTicketDetails() {
     auto it = ticketMap.find(ticketID);
     if (it != ticketMap.end()) {
         Ticket& ticket = it->second;
-        // Display ticket details
         ticket.displayTicketInfo();
     }
     else {
@@ -127,7 +122,10 @@ void TicketBookingApp::loadEventsFromFile(const string& filename) {
         return;
     }
     string name, date, time;
-    while (getline(file, name) && getline(file, date) && getline(file, time)) {
+    while (getline(file, name)) {
+        if (name.empty()) continue; 
+        getline(file, date);
+        getline(file, time);
         events.push_back(Event(name, date, time));
         file.ignore(numeric_limits<streamsize>::max(), '\n');
     }

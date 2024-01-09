@@ -3,44 +3,32 @@
 
 using namespace std;
 
-// Initialize the static member variable 'nextID' to 1
 int Ticket::nextID = 1;
 
-// Destructor: No dynamic memory to deallocate, so no specific cleanup needed
 Ticket::~Ticket() {}
 
-// Copy constructor: Copy the 'category' from 'other' and generate a new unique ID
 Ticket::Ticket(const Ticket& other) : category(other.category), uniqueID(nextID++) {}
 
-
-// Copy assignment operator
 Ticket& Ticket::operator=(const Ticket& other) {
     if (this != &other) {
-        // Check for self-assignment
-        // Copy data from 'other' to 'this'
         category = other.category;
         uniqueID = nextID++;
     }
-    return *this; // Return the modified object
+    return *this; 
 }
 
-// Equality operator
 bool Ticket::operator==(const Ticket& other) const {
     return (category == other.category) && (uniqueID == other.uniqueID);
-    // Check if the category and unique ID of two tickets are equal
 }
 
-// Accessor method to get the category of the ticket
 const string& Ticket::getCategory() const {
     return category;
 }
 
-// Accessor method to get the unique ID of the ticket
 int Ticket::getUniqueID() const {
     return uniqueID;
 }
 
-// Validation method to set the category of the ticket
 void Ticket::setCategory(const string& category) {
     if (!category.empty()) {
         Ticket::category = category;
@@ -50,17 +38,15 @@ void Ticket::setCategory(const string& category) {
     }
 }
 
-// Method to display information about the ticket
 void Ticket::displayTicketInfo() const {
     cout << "Username: " << userName << "\n";
     cout << "Event Name: " << eventName << "\n";
-    cout << "Category: " << category << "\n";    // Display the category of the ticket
-    cout << "Unique ID: " << uniqueID << "\n";   // Display the unique ID of the ticket
+    cout << "Category: " << category << "\n";   
+    cout << "Unique ID: " << uniqueID << "\n";  
     cout << "Seat number: " << seatNumber << "\n";
     cout << "Row: " << seatRow << "\n";
 }
 
-// Static method to get the next available unique ID
 int Ticket::getNextID() {
     return nextID;
 }
