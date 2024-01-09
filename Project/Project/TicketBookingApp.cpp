@@ -9,6 +9,7 @@
 #include "EventLocation.h"
 #include "Event.h"
 #include "Ticket.h"
+
 using namespace std;
 
 // Constructor to initialize events and location
@@ -21,7 +22,8 @@ void TicketBookingApp::createAndStoreTicket(const string& eventName, const strin
     auto it = find_if(events.begin(), events.end(), [&eventName](const Event& event) {
         return event.getName() == eventName;
         });
-
+    int seatRow = -1;
+    int seatNumber = -1;
     if (it != events.end()) {
         // Event found
         Event& event = *it;
@@ -118,19 +120,23 @@ void TicketBookingApp::displayTicketDetails() {
 void TicketBookingApp::saveTicketsToFile(const string& filename) const {
     ofstream outFile("savedTickets", ios::app);
 }
-
-void TicketBookingApp::loadEventsFromFile(filename) {
+void TicketBookingApp::loadEventsFromFile(const string& filename) {
     ifstream file(filename);
     if (!file) {
         cerr << "Error opening file: eventsDetails " << endl;
         return;
     }
     string name, date, time;
-    while (getline(file, name,' ')&& file>>date>>time) {
+    while (getline(file, name, ' ') && file >> date >> time) {
         events.push_back(Event(name, date, time));
         file.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     file.close();
+}
+
+void TicketBookingApp::displayEventList() {
+    for (auto event : events)
+        event.displayEventInfo();
 }
 
 void TicketBookingApp::run() {

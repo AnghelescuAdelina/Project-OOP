@@ -6,12 +6,6 @@ using namespace std;
 // Initialize the static member variable 'nextID' to 1
 int Ticket::nextID = 1;
 
-// Default constructor: Increment the nextID and assign it to uniqueID
-Ticket::Ticket() : uniqueID(nextID++) {}
-
-// Parameterized constructor: Assign the provided category, increment nextID, and assign it to uniqueID
-Ticket::Ticket(const string& category) : category(category), uniqueID(nextID++) {}
-
 // Destructor: No dynamic memory to deallocate, so no specific cleanup needed
 Ticket::~Ticket() {}
 
@@ -58,8 +52,12 @@ void Ticket::setCategory(const string& category) {
 
 // Method to display information about the ticket
 void Ticket::displayTicketInfo() const {
+    cout << "Username: " << userName << "\n";
+    cout << "Event Name: " << eventName << "\n";
     cout << "Category: " << category << "\n";    // Display the category of the ticket
     cout << "Unique ID: " << uniqueID << "\n";   // Display the unique ID of the ticket
+    cout << "Seat number: " << seatNumber << "\n";
+    cout << "Row: " << seatRow << "\n";
 }
 
 // Static method to get the next available unique ID

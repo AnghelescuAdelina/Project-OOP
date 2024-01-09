@@ -5,8 +5,6 @@
 
 using namespace std;
 
-// Default constructor: Initialize member variables to default values
-EventLocation::EventLocation(const string& filename) {}
 
 // New constructor to initialize from a file
 EventLocation::EventLocation(const string& filename) {
@@ -62,15 +60,3 @@ EventLocation& EventLocation::operator=(const EventLocation& other) {
     return *this;
 }
 
-// Other existing methods remain unchanged
-
-void EventLocation::displayLocationInfo() const {
-    cout << "Max Seats: " << maxSeats << "\n";
-    cout << "Num Rows: " << numRows << "\n";
-    cout << "Num Zones: " << numZones << "\n";
-    cout << "Seats Per Row: ";
-    for (int i = 0; i < numRows; ++i) {
-        cout << seatsPerRow[i] << " ";
-    }
-    cout << "\n";
-}

@@ -12,7 +12,7 @@ Event::Event(const string& name, const string& date, const string& time)
 
 // Destructor
 Event::~Event() {
-    // Add any cleanup code if necessary
+  
 }
 
 // Copy Constructor
@@ -38,27 +38,6 @@ bool Event::operator==(const Event& other) const {
 const string& Event::getName() const {
     return name;
 }
-
-// Getter for date
-const string& Event::getDate() const {
-    return date;
-}
-
-// Getter for time
-const string& Event::getTime() const {
-    return time;
-}
-
-// Setter for name
-void Event::setName(const string& name) {
-    if (!name.empty()) {
-        this->name = name;
-    }
-    else {
-        cerr << "Invalid name\n";
-    }
-}
-
 // Setter for date
 void Event::setDate(const string& date) {
     if (!date.empty()) {
@@ -78,7 +57,6 @@ void Event::setTime(const string& time) {
         cerr << "Invalid time\n";
     }
 }
-
 // Display information about the event
 void Event::displayEventInfo() const {
     cout << "Event Name: " << name << "\n";

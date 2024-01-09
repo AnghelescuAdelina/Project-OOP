@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -18,13 +19,6 @@ private:
     int seatNumber;
 
 public:
-    // Constructors and Destructor
-
-    // Default constructor declaration
-    Ticket();
-
-    // Parameterized constructor declaration
-    Ticket(const string& category);
 
     // Copy constructor declaration
     Ticket(const Ticket& other);

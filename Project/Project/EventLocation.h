@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+
+using namespace std;
 
 class EventLocation {
 private:
@@ -14,11 +17,8 @@ private:
 public:
     // Constructors and Destructor
 
-    // Default constructor
-    EventLocation();
-
     // Parameterized constructor
-    EventLocation(const string& filename="eventLocations");
+    EventLocation(const string& filename="eventLocations.txt");
 
     // Destructor
     ~EventLocation();
@@ -26,45 +26,9 @@ public:
     // Copy constructor
     EventLocation(const EventLocation& other);
 
-    // New constructor declaration
-    EventLocation(const string& filename);
-
     // Copy Assignment Operator
     EventLocation& operator=(const EventLocation& other);
 
     // Equality operator
     bool operator==(const EventLocation& other) const;
-
-    // Accessors
-
-    // Accessor method to get the maximum number of seats
-    int getMaxSeats() const;
-
-    // Accessor method to get the number of rows
-    int getNumRows() const;
-
-    // Accessor method to get the number of zones
-    int getNumZones() const;
-
-    // Accessor method to get the array containing the number of seats per row
-    const int* getSeatsPerRow() const;
-
-    // Validation methods
-
-    // Validation method to set the maximum number of seats
-    void setMaxSeats(int maxSeats);
-
-    // Validation method to set the number of rows
-    void setNumRows(int numRows);
-
-    // Validation method to set the number of zones
-    void setNumZones(int numZones);
-
-    // Validation method to set the array containing the number of seats per row
-    void setSeatsPerRow(const int* seatsPerRow);
-
-    // Display information
-
-    // Method to display information about the event location
-    void displayLocationInfo() const;
 };
