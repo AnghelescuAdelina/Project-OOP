@@ -4,59 +4,77 @@
 using namespace std;
 
 // Constructor to initialize events and location
-TicketBookingApp::TicketBookingApp(const string& eventFilename, const string& locationFilename) {
-    // Load events and location from files
-    loadEventsFromFile(eventFilename);
-
-    // Load event location details from file
-    // Initialize other member variables as needed
+TicketBookingApp::TicketBookingApp(const string& eventFilename, const string& locationFilename)
+    :eventlocation(0, 0, 0, {}) {
+    // Load events from event file (similar to loadEventsFromFile)
+   // Load event location matrix from location file
+   // Initialize ticket-related variables
+    nextTicketID = 1;
 }
 
-// Helper function to load events from a file
+void TicketBookingApp::displayTicketDetails() {
+    int ticketID;
+    cout << "Enter the ticket ID: ";
+    cin >> ticketID;
+
+    auto it = ticketMap.find(ticketID);
+    if (it != ticketMap.end()) {
+        Ticket& ticket = it->second;
+        // Display ticket details
+        ticket.displayTicketInfo();
+    }
+    else {
+        cerr << "Ticket not found with ID: " << ticketID << endl;
+    }
+}
+void TicketBookingApp::saveTicketsToFile(const string& filename) const {
+    // Save ticket details to a file (e.g., ticket ID, name, event details, etc.)
+    // ...
+}
+
 void TicketBookingApp::loadEventsFromFile(const string& filename) {
-    // Read events from the file and populate the 'events' vector
+    ifstream file(filename);
+    if (!file) {
+        cerr << "Error opening file: " << filename << endl;
+        return;
+    }
+    string name, date, time;
+    while (file >> name >> date >> time) {
+        events.push_back(Event(name, date, time));
+    }
+    file.close();
 }
 
-// Helper function to save issued tickets to a file
-void TicketBookingApp::saveTicketsToFile(const string& filename) {
-    // Write issued tickets to the file
-}
-
-// Run the main menu and handle user interactions
 void TicketBookingApp::run() {
-    // Implement the main menu loop here
+    int choice;
+    while (true) {
+        cout << "1. View Events\n";
+        cout << "2. Book Ticket\n";
+        cout << "3.Display Ticket Details\n";
+        cout << "4.Exit\n";
+        cout<<"5.Enter choice : ";
+        cin >> choice;
+        switch (choice) {
+        case 1: displayEventList(); break;
+        case 2: bookTicket(); break;
+        case 3: displayTicketDetails(); break;
+        case 4: return;
+        default: cout << "Invalid choice.\n";
+        }
+    }
 }
-
-// Display a list of available events
-void TicketBookingApp::displayEventList() const {
-    // Display the list of events to the user
-}
-
-// Allow the user to book a ticket
-void TicketBookingApp::bookTicket() {
-    // Implement the ticket booking process here
-}
-
-// Display a list of issued tickets
-void TicketBookingApp::displayTicketList() const {
-    // Display the list of issued tickets to the user
-}
-
-// Destructor to clean up resources
-TicketBookingApp::~TicketBookingApp() {
-    // Clean up dynamically allocated memory if any
-}
+char** seatAvailability;
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        cerr << "Usage: " << argv[0] << " event_filename location_filename" << endl;
-        return 1;
+    if (argc > 1) {
+        // Example: Check if the argument is a filename for file processing
+        string filename = argv[1];
+        // Process the file...
     }
-
-    // Create the TicketBookingApp instance and run the application
-    TicketBookingApp app(argv[1], argv[2]);
-    app.run();
-
+    else {
+        // Run the application in menu-driven mode
+        TicketBookingApp app;
+        app.run();
+    }
     return 0;
 }
-
