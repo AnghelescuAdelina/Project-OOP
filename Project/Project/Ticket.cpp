@@ -66,3 +66,39 @@ int Ticket::getNextID() {
     return nextID;
 }
 
+void Ticket::setUserName(const string& userName) {
+    this->userName = userName;
+}
+
+void Ticket::setUserEmail(const string& userEmail) {
+    this->userEmail = userEmail;
+}
+
+void Ticket::setEventName(const string& eventName) {
+    this->eventName = eventName;
+}
+
+void Ticket::setSeat(int row, int number) {
+    seatRow = row;
+    seatNumber = number;
+}
+
+string Ticket::getUserName() const {
+    return userName;
+}
+
+string Ticket::getUserEmail() const {
+    return userEmail;
+}
+
+string Ticket::getEventName() const {
+    return eventName;
+}
+
+int Ticket::getSeatRow() const {
+    return seatRow;
+}
+
+int Ticket::getSeatNumber() const {
+    return seatNumber;
+}
